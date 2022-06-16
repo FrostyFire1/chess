@@ -1,5 +1,12 @@
-Dir["chess_pieces/*.rb"].sort.each { |f| require_relative f }
+require_relative "chess_pieces/pawn.rb"
+require_relative "chess_pieces/rook.rb"
+require_relative "chess_pieces/knight.rb"
+require_relative "chess_pieces/bishop.rb"
+require_relative "chess_pieces/queen.rb"
+require_relative "chess_pieces/king.rb"
+require_relative "display.rb"
 class Chess
+  attr_reader(:board)
   def initialize(player_white, player_black)
     @board = Array.new(8) { Array.new(8) }
     @player_white = player_white
