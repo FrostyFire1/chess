@@ -5,5 +5,5 @@ class Chess
     @player_black = player_black
     @current_player = player_white
   end
-
+  
 end
