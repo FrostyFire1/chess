@@ -23,4 +23,17 @@ module Display
     end
   end
 
+  def Display.ask_for_piece
+    columns = %w[A B C D E F G H]
+    puts "Please type in the position of a chess piece"
+    input = gets.chomp
+    column = input[0].upcase
+    row = Integer(input[1]) rescue nil
+    column = columns.find {|i| i == column}
+    return nil if column.nil? || row.nil?
+    [column,row]
+
+  end
+
+
 end
