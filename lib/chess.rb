@@ -28,5 +28,13 @@ class Chess
     end
 
   end
+
+  def move_piece(current_pos, new_pos)
+    new_pos => new_row,new_column
+    current_pos => current_row,current_column
+    piece = @board[current_row][current_column]
+    @board[new_row][new_column] = piece
+    @board[current_row][current_column] = nil
+  end
   
 end

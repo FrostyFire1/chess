@@ -1,9 +1,8 @@
 require "chess.rb"
 
 describe Chess do
-
+  subject(:chess_board) { described_class.new("placeholder","placerholder2")}
   describe "#new_board" do
-    subject(:chess_board) { described_class.new("placeholder","placerholde2")}
     it "creates a board to start the game" do
       expected_board = [
         [Rook.new(0,0,"black"),Knight.new(0,1,"black"),Bishop.new(0,2,"black"),Queen.new(0,3,"black"),King.new(0,4,"black"),Bishop.new(0,5,"black"),Knight.new(0,6,"black"),Rook.new(0,7,"black")],
@@ -24,6 +23,25 @@ describe Chess do
           expect(actual_class).to eq(expected_class)
         end
       end
+    end
+  end
+
+  describe "#move_piece" do
+    it "moves the piece to the target position" do
+      board = chess_board.instance_variable_get(:@board)
+      pawn = Pawn.new(1,0,"black")
+      board[1][0] = pawn
+      chess_board.move_piece([1,0],[1,2])
+      new_position_piece = board[1][2]
+      expect(new_position_piece).to eq(pawn)
+    end
+    it "removes the piece from the old position" do
+      board = chess_board.instance_variable_get(:@board)
+      pawn = Pawn.new(1,0,"black")
+      board[1][0] = pawn
+      chess_board.move_piece([1,0],[1,2])
+      old_position_piece = board[1][0]
+      expect(old_position_piece).to eq(nil)
     end
   end
 end
