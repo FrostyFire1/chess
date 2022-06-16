@@ -1,4 +1,5 @@
 class Bishop
+  attr_accessor(:position)
   attr_reader(:symbol)
   def initialize(row,column, color)
     @position = [row,column]
