@@ -24,12 +24,12 @@ module Display
   end
 
   def Display.ask_for_piece
-    puts "Please type in the position of a chess piece"
+    puts "Please select a chess piece"
     sanitize_position(gets.chomp)
   end
   
   def Display.ask_for_position
-    puts "Please type in where you'd like to move the piece"
+    puts "Please select a move"
     sanitize_position(gets.chomp)
   end
   
@@ -40,7 +40,7 @@ module Display
     row = Integer(position[1]) - 1 rescue nil
     column = columns.find_index {|i| i == column}
     return nil if column.nil? || row.nil? || !row.between?(0,7)
-    [row,column]
+    [7-row,column]
   end
 
 end
