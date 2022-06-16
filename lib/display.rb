@@ -25,18 +25,12 @@ module Display
 
   def Display.ask_for_piece
     puts "Please type in the position of a chess piece"
-    position = validate_position(gets.chomp)
-    return position unless position.nil?
-
-    puts "That's an invalid position! Please try again."
-    Display.ask_for_piece
+    validate_position(gets.chomp)
   end
   
   def Display.ask_for_position
     puts "Please type in where you'd like to move the piece"
     validate_position(gets.chomp)
-    puts "That's an invalid position! Please try again."
-    Display.ask_for_position
   end
   
   def Display.validate_position(position)
@@ -46,7 +40,7 @@ module Display
     row = Integer(position[1]) - 1 rescue nil
     column = columns.find_index {|i| i == column}
     return nil if column.nil? || row.nil?
-    [column,row]
+    [row,column]
   end
 
 end
