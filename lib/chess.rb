@@ -34,7 +34,15 @@ class Chess
     current_pos => current_row,current_column
     piece = @board[current_row][current_column]
     @board[new_row][new_column] = piece
+    piece.position = [new_row,new_column]
     @board[current_row][current_column] = nil
   end
-  
+
+  def play_turn
+    Display.show_chess_board(@board)
+    puts "Current player: #{@current_player}"
+    start_pos = Display.ask_for_piece
+    end_pos = Display.ask_for_position
+    move_piece(start_pos, end_pos)
+  end
 end
