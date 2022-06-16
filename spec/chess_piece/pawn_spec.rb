@@ -1,14 +1,11 @@
 require "chess_pieces/pawn.rb"
+require_relative "piece_behavior.rb"
 
-
-shared_examples "a chess piece" do
-  it { is_expected.to respond_to(:to_symbol).with(1).argument }
-end
 
 
 
 describe Pawn do
-  subject(:pawn_piece) { described_class.new(1,1, "white")}
+  subject(:generic_pawn) {described_class.new(1,1,"white")}
   it_behaves_like "a chess piece"
 
   describe "#to_symbol" do
