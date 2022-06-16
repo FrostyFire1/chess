@@ -5,7 +5,7 @@ describe Display do
     context "when input is a valid chess position" do
       it "returns the column and the row" do
         input = "B2"
-        expected = [2,2]
+        expected = [1,1]
         actual = subject.validate_position(input)
         expect(actual).to eq expected
       end

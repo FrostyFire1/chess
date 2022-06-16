@@ -44,4 +44,28 @@ describe Chess do
       expect(old_position_piece).to eq(nil)
     end
   end
+
+  describe "#play_turn" do
+    before(:each) do
+      allow(Display).to receive(:gets).and_return('B1','C2')
+      allow(Display).to receive(:validate_position).and_return([1,0])
+      allow(chess_board).to receive(:move_piece).and_return(nil)
+    end
+    it "sends a message to Display.show_chess_board" do
+      expect(Display).to receive(:show_chess_board).once
+      chess_board.play_turn
+    end
+    it "sends a message to Display.ask_for_piece" do
+      expect(Display).to receive(:ask_for_piece).once
+      chess_board.play_turn
+    end
+    it "sends a message to Display.ask_for_position" do
+      expect(Display).to receive(:ask_for_position).once
+      chess_board.play_turn
+    end
+    it "sends a message to move_piece" do
+      expect(chess_board).to receive(:move_piece).once
+      chess_board.play_turn
+    end
+  end
 end
