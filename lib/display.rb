@@ -25,12 +25,18 @@ module Display
 
   def Display.ask_for_piece
     puts "Please type in the position of a chess piece"
-    validate_position(gets.chomp)
+    position = validate_position(gets.chomp)
+    return position unless position.nil?
+
+    puts "That's an invalid position! Please try again."
+    Display.ask_for_piece
   end
   
   def Display.ask_for_position
     puts "Please type in where you'd like to move the piece"
     validate_position(gets.chomp)
+    puts "That's an invalid position! Please try again."
+    Display.ask_for_position
   end
   
   def Display.validate_position(position)
