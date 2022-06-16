@@ -48,7 +48,7 @@ describe Chess do
   describe "#play_turn" do
     before(:each) do
       allow(Display).to receive(:gets).and_return('B1','C2')
-      allow(Display).to receive(:validate_position).and_return([1,0])
+      allow(Display).to receive(:sanitize_position).and_return([1,0])
       allow(chess_board).to receive(:move_piece).and_return(nil)
     end
     it "sends a message to Display.show_chess_board" do

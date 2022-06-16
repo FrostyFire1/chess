@@ -25,21 +25,21 @@ module Display
 
   def Display.ask_for_piece
     puts "Please type in the position of a chess piece"
-    validate_position(gets.chomp)
+    sanitize_position(gets.chomp)
   end
   
   def Display.ask_for_position
     puts "Please type in where you'd like to move the piece"
-    validate_position(gets.chomp)
+    sanitize_position(gets.chomp)
   end
   
-  def Display.validate_position(position)
+  def Display.sanitize_position(position)
     return nil if position.length != 2
     columns = %w[A B C D E F G H]
     column = position[0].upcase
     row = Integer(position[1]) - 1 rescue nil
     column = columns.find_index {|i| i == column}
-    return nil if column.nil? || row.nil?
+    return nil if column.nil? || row.nil? || !row.between?(0,7)
     [row,column]
   end
 
