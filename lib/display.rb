@@ -12,6 +12,11 @@ module Display
         else
           white_background
         end
+        if square.nil?
+          square = "  "
+        else
+          square = square.symbol+" "
+        end
         print "#{background}#{black_contour}#{square}\e[0m"
       end
       puts
