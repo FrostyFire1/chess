@@ -9,9 +9,9 @@ class Pawn
 
   def to_symbol(color)
     if color == "black"
-      "♟ "
-    else
-      "♙ "
+      "♟"
+    elsif color == "white"
+      "♙"
     end
   end
 end
