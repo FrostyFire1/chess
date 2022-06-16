@@ -34,6 +34,10 @@ module Display
     [column,row]
 
   end
-
+  
+  def Display.ask_for_position
+    puts "Please type in the new position"
+    validate_position(gets.chomp)
+  end
 
 end
