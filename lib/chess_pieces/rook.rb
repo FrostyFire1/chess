@@ -1,5 +1,6 @@
 
 class Rook
+  attr_reader(:symbol)
   def initialize(row,column, color)
     @position = [row,column]
     @distance_moved_last_turn = 0
