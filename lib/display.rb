@@ -24,20 +24,23 @@ module Display
   end
 
   def Display.ask_for_piece
-    columns = %w[A B C D E F G H]
     puts "Please type in the position of a chess piece"
-    input = gets.chomp
-    column = input[0].upcase
-    row = Integer(input[1]) rescue nil
-    column = columns.find {|i| i == column}
-    return nil if column.nil? || row.nil?
-    [column,row]
-
+    validate_position(gets.chomp)
   end
   
   def Display.ask_for_position
     puts "Please type in the new position"
     validate_position(gets.chomp)
+  end
+  
+  def Display.validate_position(position)
+    return nil if position.length != 2
+    columns = %w[A B C D E F G H]
+    column = position[0].upcase
+    row = Integer(position[1]) rescue nil
+    column = columns.find_index {|i| i == column}
+    return nil if column.nil? || row.nil?
+    [column+1,row]
   end
 
 end
