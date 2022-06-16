@@ -5,6 +5,7 @@ require_relative "chess_pieces/bishop.rb"
 require_relative "chess_pieces/queen.rb"
 require_relative "chess_pieces/king.rb"
 require_relative "display.rb"
+require 'io/console'
 class Chess
   attr_reader(:board)
   def initialize(player_white, player_black)
@@ -39,10 +40,24 @@ class Chess
   end
 
   def play_turn
+    #$stdout.clear_screen
     Display.show_chess_board(@board)
     puts "Current player: #{@current_player}"
-    start_pos = Display.ask_for_piece
-    end_pos = Display.ask_for_position
+    start_pos = sanitize_position(Display.ask_for_piece)
+    end_pos = sanitize_position(Display.ask_for_position)
     move_piece(start_pos, end_pos)
+  end
+  
+  def sanitize_position(position)
+    return nil if position.length != 2
+    valid_columns = %w[A B C D E F G H]
+    column = position[0].upcase
+    row = Integer(position[1]) - 1 rescue nil
+    return nil if row.nil?
+    row = 7 - row # This is because rows go from 8 to 1, and not from 1 to 8
+    column = valid_columns.find_index {|i| i == column} # returns nil if column is invalid
+
+    return nil unless row.between?(0,7) && !column.nil?
+    [row,column]
   end
 end

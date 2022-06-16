@@ -48,7 +48,7 @@ describe Chess do
   describe "#play_turn" do
     before(:each) do
       allow(Display).to receive(:gets).and_return('B1','C2')
-      allow(Display).to receive(:sanitize_position).and_return([1,0])
+      allow(chess_board).to receive(:sanitize_position).and_return([1,0])
       allow(chess_board).to receive(:move_piece).and_return(nil)
     end
     it "sends a message to Display.show_chess_board" do
@@ -66,6 +66,52 @@ describe Chess do
     it "sends a message to move_piece" do
       expect(chess_board).to receive(:move_piece).once
       chess_board.play_turn
+    end
+  end
+
+  describe "#sanitize_position" do
+    context "when input is a valid chess position" do
+      it "returns the column and the row" do
+        input = "B2"
+        expected = [6,1]
+        actual = subject.sanitize_position(input)
+        expect(actual).to eq expected
+      end
+    end
+    context "when the input is too long" do
+      it "returns nil" do
+        input = "asdf"
+        expected = nil
+        actual = subject.sanitize_position(input)
+        expect(actual).to eq expected
+      end
+    end
+    context "when the input is too short" do
+      it "returns nil" do
+        input = "a"
+        expected = nil
+        actual = subject.sanitize_position(input)
+        expect(actual).to eq expected
+      end
+    end
+    context "when the column is invalid" do
+      it "returns nil" do
+        input = "12"
+        expected = nil
+        actual = subject.sanitize_position(input)
+        expect(actual).to eq expected
+      end
+    end
+    context "when the row is invalid" do
+      it "returns nil" do
+        input = "BA"
+        input_2 = "B9"
+        expected = nil
+        actual = subject.sanitize_position(input)
+        actual_2 = subject.sanitize_position(input_2)
+        expect(actual).to eq expected
+        expect(actual_2).to eq expected
+      end
     end
   end
 end
