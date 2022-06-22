@@ -1,7 +1,9 @@
 require "chess.rb"
-
+require "player.rb"
 describe Chess do
-  subject(:chess_board) { described_class.new("placeholder","placerholder2")}
+  let(:player1) {Player.new("John","white")}
+  let(:player2) {Player.new("Mark","black")}
+  subject(:chess_board) { described_class.new(player1,player2) }
   describe "#new_board" do
     it "creates a board to start the game" do
       expected_board = [
@@ -42,6 +44,14 @@ describe Chess do
       chess_board.move_piece([1,0],[1,2])
       old_position_piece = board[1][0]
       expect(old_position_piece).to eq(nil)
+    end
+    it "updates the piece's position variable" do
+      board = chess_board.instance_variable_get(:@board)
+      pawn = Pawn.new(1,0,"black")
+      board[1][0] = pawn
+      chess_board.move_piece([1,0],[1,2])
+      actual_position = pawn.position
+      expect(actual_position).to eq([1,2])
     end
   end
 
