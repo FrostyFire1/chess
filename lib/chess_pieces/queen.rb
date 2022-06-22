@@ -1,9 +1,11 @@
 class Queen
-  attr_accessor(:position)
-  attr_reader(:symbol)
+  attr_accessor(:position, :owner)
+  attr_reader(:symbol, :color)
   def initialize(row,column, color)
     @position = [row,column]
     @distance_moved_last_turn = 0
+    @color = color
+    @owner = nil
     @symbol = to_symbol(color)
   end
 

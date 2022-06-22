@@ -1,6 +1,8 @@
 require_relative "chess.rb"
-
-game = Chess.new("p1","p2")
+require_relative "player.rb"
+player_1 = Player.new("John","white")
+player_2 = Player.new("Mary","black")
+game = Chess.new(player_1,player_2)
 game.new_board
 game.play_turn
 game.play_turn

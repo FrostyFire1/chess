@@ -28,6 +28,20 @@ class Chess
     @board[6][i] = Pawn.new(1,i,"white")
     end
 
+    set_piece_owners
+  end
+
+  def set_piece_owners
+    @board.each do |row|
+      row.each do |piece|
+        next if piece.nil?
+        if piece.color == "white"
+          piece.owner = @player_white
+        elsif piece.color == "black"
+          piece.owner = @player_black
+        end
+      end
+    end
   end
 
   def move_piece(current_pos, new_pos)
@@ -42,7 +56,7 @@ class Chess
   def play_turn
     #$stdout.clear_screen
     Display.show_chess_board(@board)
-    puts "Current player: #{@current_player}"
+    puts "Current player: #{@current_player.name}"
     start_pos = sanitize_position(Display.ask_for_piece)
     end_pos = sanitize_position(Display.ask_for_position)
     move_piece(start_pos, end_pos)
