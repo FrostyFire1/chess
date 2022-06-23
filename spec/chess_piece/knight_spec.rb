@@ -41,7 +41,7 @@ describe Knight do
   describe "#valid_moves" do
     let(:board) { Array.new(8) { Array.new(8) }}
 
-    context "It returns valid moves when the knight is" do
+    context "Returns valid moves when the knight is" do
       it "in the top right corner" do
       knight = described_class.new(0,7,"white")
       valid_moves = knight.valid_moves(board)
