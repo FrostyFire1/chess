@@ -81,7 +81,7 @@ describe Bishop do
     context "Considers other pieces in the way" do
       let(:board) { Array.new(8) { Array.new(8) }}
 
-      it "stop before an ally piece" do
+      it "stops before an ally piece" do
         bishop = described_class.new(7,0,"white")
         allied_pawn = Pawn.new(3,4,"white")
         board[3][4] = allied_pawn
@@ -90,7 +90,7 @@ describe Bishop do
         expect(valid_moves).to match_array(expected)
       end
 
-      it "stop on an enemy piece" do
+      it "stops on an enemy piece" do
         bishop = described_class.new(6,1,"white")
         enemy_pawn = Pawn.new(3,4,"black")
         board[3][4] = enemy_pawn

@@ -84,7 +84,7 @@ describe Rook do
     context "Considers other pieces in the way" do
       let(:board) { Array.new(8) { Array.new(8) }}
 
-      it "stop before an ally piece" do
+      it "stops before an ally piece" do
         rook = described_class.new(4,5,"white")
         allied_pawn = Pawn.new(4,2,"white")
         board[4][2] = allied_pawn
@@ -94,7 +94,7 @@ describe Rook do
         expect(valid_moves).to match_array(expected)
       end
 
-      it "stop on an enemy piece" do
+      it "stops on an enemy piece" do
         rook = described_class.new(7,3,"white")
         enemy_pawn = Pawn.new(3,3,"black")
         board[3][3] = enemy_pawn
